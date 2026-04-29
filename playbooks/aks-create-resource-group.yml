@@ -1,0 +1,26 @@
+---
+- name: Create Azure resource group from AKS Container Group
+  hosts: localhost
+  connection: local
+  gather_facts: false
+
+  vars:
+    resource_group_name: aap-managed-rg
+    location: eastus
+
+  tasks:
+    - name: Create resource group
+      azure.azcollection.azure_rm_resourcegroup:
+        name: "{{ resource_group_name }}"
+        location: "{{ location }}"
+        tags:
+          created_by: aap
+          environment: lab
+      register: rg_result
+
+    - name: Show result
+      ansible.builtin.debug:
+        msg:
+          - "Resource Group: {{ rg_result.state.name }}"
+          - "Location: {{ rg_result.state.location }}"
+          - "Status: {{ 'Created' if rg_result.changed else 'Already exists' }}"

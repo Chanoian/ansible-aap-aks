@@ -1,16 +1,23 @@
 ---
-- name: List AKS namespaces from Container Group
+- name: Prove EE pod is running in Azure (AKS)
   hosts: localhost
   connection: local
   gather_facts: false
 
   tasks:
-    - name: Get all namespaces
-      kubernetes.core.k8s_info:
-        api_version: v1
-        kind: Namespace
-      register: ns_list
+    - name: Get Azure instance metadata
+      ansible.builtin.uri:
+        url: http://169.254.169.254/metadata/instance?api-version=2021-02-01
+        headers:
+          Metadata: "true"
+        return_content: true
+      register: azure_metadata
 
-    - name: Show namespaces
+    - name: Show cloud provider and location
       ansible.builtin.debug:
-        msg: "{{ ns_list.resources | map(attribute='metadata.name') | list }}"
+        msg:
+          - "Cloud: Azure"
+          - "Region: {{ azure_metadata.json.compute.location }}"
+          - "VM Size: {{ azure_metadata.json.compute.vmSize }}"
+          - "Resource Group: {{ azure_metadata.json.compute.resourceGroupName }}"
+          - "Hostname: {{ azure_metadata.json.compute.name }}"
