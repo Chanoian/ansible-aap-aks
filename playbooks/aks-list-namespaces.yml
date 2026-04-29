@@ -1,0 +1,16 @@
+---
+- name: List AKS namespaces from Container Group
+  hosts: localhost
+  connection: local
+  gather_facts: false
+
+  tasks:
+    - name: Get all namespaces
+      kubernetes.core.k8s_info:
+        api_version: v1
+        kind: Namespace
+      register: ns_list
+
+    - name: Show namespaces
+      ansible.builtin.debug:
+        msg: "{{ ns_list.resources | map(attribute='metadata.name') | list }}"

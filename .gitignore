@@ -1,0 +1,16 @@
+# Red Hat installer bundle — local only, re-downloadable
+ansible-automation-platform-containerized-setup-*/
+
+# Real, filled-in inventories — never commit (contain secrets)
+inventory-growth
+inventory
+*.inventory
+*.secret
+inventory.local
+
+# Docs — local only for now
+docs/
+
+# Claude Code project config — local only
+CLAUDE.md
+README.md
