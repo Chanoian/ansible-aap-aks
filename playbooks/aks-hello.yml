@@ -12,3 +12,9 @@
           - "OS: {{ ansible_distribution }} {{ ansible_distribution_version }}"
           - "Python: {{ ansible_python_version }}"
           - "IP: {{ ansible_default_ipv4.address | default('N/A') }}"
+
+
+    - name: Sleep for a bit to simulate work
+      ansible.builtin.pause:
+        seconds: 15
+...
