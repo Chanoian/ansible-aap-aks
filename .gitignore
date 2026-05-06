@@ -16,4 +16,4 @@ CLAUDE.md
 README.md
 
 # Secrets — never commit filled-in pull secrets
-examples/aks/pull-secret.yaml
+examples/aks/shared/pull-secret.yaml
