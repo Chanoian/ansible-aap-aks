@@ -13,7 +13,6 @@ docs/
 
 # Claude Code project config — local only
 CLAUDE.md
-README.md
 
 # Secrets — never commit filled-in pull secrets
 examples/aks/shared/pull-secret.yaml
