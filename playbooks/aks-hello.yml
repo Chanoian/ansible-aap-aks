@@ -15,5 +15,5 @@
 
     - name: Sleep for a bit to simulate work
       ansible.builtin.pause:
-        seconds: 65
+        seconds: 300
 ...
