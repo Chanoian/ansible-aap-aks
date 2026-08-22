@@ -6,7 +6,7 @@
 
 This guide implements Container Groups on **AKS** with the AAP controller running **outside** AKS — on OpenShift, RHEL, or any supported platform. The only network requirement is outbound HTTPS from the controller to the AKS API server.
 
-![Container Groups Architecture](diagrams/image.png)
+![Container Groups Architecture](diagrams/aap-aks.png)
 
 ## Requirements
 

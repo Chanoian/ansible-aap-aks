@@ -16,3 +16,6 @@ CLAUDE.md
 
 # Secrets — never commit filled-in pull secrets
 examples/aks/shared/pull-secret.yaml
+
+# macOS
+.DS_Store
