@@ -1,0 +1,24 @@
+---
+- name: Azure IMDS check
+  hosts: localhost
+  connection: local
+  gather_facts: false
+
+  tasks:
+    - name: Query Azure Instance Metadata Service (proves the node is an Azure VM)
+      ansible.builtin.uri:
+        url: "http://169.254.169.254/metadata/instance?api-version=2021-02-01"
+        headers:
+          Metadata: "true"
+        return_content: true
+      register: azure_imds
+
+    - name: Show Azure node identity from IMDS
+      ansible.builtin.debug:
+        msg:
+          - "Cloud: Azure"
+          - "Location: {{ azure_imds.json.compute.location }}"
+          - "Resource Group: {{ azure_imds.json.compute.resourceGroupName }}"
+          - "VM Size: {{ azure_imds.json.compute.vmSize }}"
+          - "Subscription: {{ azure_imds.json.compute.subscriptionId }}"
+...
