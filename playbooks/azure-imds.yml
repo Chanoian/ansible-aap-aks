@@ -21,4 +21,8 @@
           - "Resource Group: {{ azure_imds.json.compute.resourceGroupName }}"
           - "VM Size: {{ azure_imds.json.compute.vmSize }}"
           - "Subscription: {{ azure_imds.json.compute.subscriptionId }}"
+
+    - name: Sleep for a bit to simulate work
+      ansible.builtin.pause:
+        seconds: 500
 ...
